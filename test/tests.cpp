@@ -6,7 +6,6 @@
 #include "tasks.h"
 
 double EPS = 1e-5;
-
 TEST(Marina_Saratova_Test_Circle, test_circle_setter) {
     Circle circle1;
     circle1.setRadius(1000.0);
