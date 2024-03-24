@@ -20,7 +20,7 @@ class Circle {
 
     double getArea();
     double getRad();
-    double getFerence();
+    double getFer();
 
     void setArea(double a);
     void setFer(double f);

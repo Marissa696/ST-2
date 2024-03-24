@@ -60,7 +60,8 @@ void Circle::setFer(double f) {
 
 void Circle::setArea(double a) {
     if (a < 0) {
-        throw std::invalid_argument("Площадь окружности должна быть положительной");
+        throw std::invalid_argument("Площадь окружности должна
+         быть положительной");
     }
     area = a;
     rad = sqrt(area / PI);
