@@ -4,25 +4,18 @@
 #include <cmath>
 
 class Circle {
- private:
-    const double PI = 3.1415;
-    double rad;
-    double fer;
+private:
+    static const double PI;
+    static void ValidateNotNegative(double val);
+    double radius;
+    double ference;
     double area;
-
- private:
-    void calculatingFerence();
-    void calculatingArea();
-
- public:
-    Circle();
-    explicit Circle(double rad);
-
+public:
+    explicit Circle(double radius = 0);
+    void setRadius(double radius);
+    void setFerence(double ference);
+    void setArea(double area);
+    double getRadius();
+    double getFerence();
     double getArea();
-    double getRad();
-    double getFer();
-
-    void setArea(double a);
-    void setFer(double f);
-    void setRad(double r);
 };

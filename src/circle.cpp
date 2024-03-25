@@ -3,66 +3,44 @@
 #include <stdexcept>
 #include "circle.h"
 
-Circle::Circle() {
-    rad = 0.0;
-    fer = 0.0;
-    area = 0.0;
+const double Circle::PI = std::atan(1.0) * 4;
+
+void Circle::ValidateNotNegative(double val) {
+    if (val < 0) throw std::logic_error("value must be not negative");
 }
 
-void Circle::calculatingArea() {
-    area = PI * rad * rad;
+Circle::Circle(double radius) {
+    ValidateNotNegative(radius);
+    this->radius = radius;
+    this->area = PI * radius * radius;
+    this->ference = 2 * PI * radius;
 }
 
-void Circle::calculatingFerence() {
-    fer = 2 * PI * rad;
+void Circle::setRadius(double radius) {
+    ValidateNotNegative(radius);
+    this->radius = radius;
+    this->area = PI * radius * radius;
+    this->ference = 2 * PI * radius;
 }
 
-Circle::Circle(double r) {
-    if (r < 0) {
-        throw std::invalid_argument("Радиус должен быть положительным");
-    }
-    rad = r;
-    calculatingArea();
-    calculatingFerence();
+void Circle::setFerence(double ference) {
+    ValidateNotNegative(ference);
+    this->setRadius(ference / 2 / PI);
 }
 
-double Circle::getRad() {
-    return rad;
+void Circle::setArea(double area) {
+    ValidateNotNegative(area);
+    this->setRadius(sqrt(area / PI));
 }
 
-double Circle::getFer() {
-    return fer;
+double Circle::getRadius() {
+    return radius;
+}
+
+double Circle::getFerence() {
+    return ference;
 }
 
 double Circle::getArea() {
     return area;
-}
-
-
-void Circle::setRad(double r) {
-    if (r < 0) {
-        throw std::invalid_argument("Радиус должен быть положительным");
-    }
-    rad = r;
-    calculatingArea();
-    calculatingFerence();
-}
-
-void Circle::setFer(double f) {
-    if (f < 0) {
-        throw std::invalid_argument
-        ("Длина окружности должна быть положительной");
-    }
-    fer = f;
-    rad = fer / (2 * PI);
-    calculatingArea();
-}
-
-void Circle::setArea(double a) {
-    if (a < 0) {
-        throw std::invalid_argument("Площадь отрицательна");
-    }
-    area = a;
-    rad = sqrt(area / PI);
-    calculatingFerence();
 }
