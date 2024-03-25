@@ -8,23 +8,23 @@
 double EPS = 1e-5;
 TEST(Marina_Saratova_Test_Circle, test_circle_setter) {
     Circle circle1;
-    circle1.setRadius(1000.0);
-    EXPECT_DOUBLE_EQ(circle1.getRadius(), 1000.0);
+    circle1.setRad(1000.0);
+    EXPECT_DOUBLE_EQ(circle1.getRad(), 1000.0);
 }
 
 TEST(Marina_Saratova_Test_Circle, test_circle_constructor_with_radius) {
     Circle circle1(1000.0);
-    EXPECT_DOUBLE_EQ(circle1.getRadius(), 1000.0);
+    EXPECT_DOUBLE_EQ(circle1.getRad(), 1000.0);
 }
 
 TEST(Marina_Saratova_Test_Circle, test_circle_constructor) {
     Circle circle1;
-    EXPECT_DOUBLE_EQ(circle1.getRadius(), 0.0);
+    EXPECT_DOUBLE_EQ(circle1.getRad(), 0.0);
 }
 
 TEST(Marina_Saratova_Test_Circle, test_ference_autoset) {
     Circle circle1(6378.1);
-    EXPECT_DOUBLE_EQ(circle1.getFerence(), 40074.750357999998);
+    EXPECT_DOUBLE_EQ(circle1.getFer(), 40074.750357999998);
 }
 
 TEST(Marina_Saratova_Test_Circle, test_area_autoset) {
@@ -34,8 +34,8 @@ TEST(Marina_Saratova_Test_Circle, test_area_autoset) {
 
 TEST(Marina_Saratova_Test_Circle, test_setter_ference) {
     Circle circle1;
-    circle1.setFerence(1000.0);
-    EXPECT_DOUBLE_EQ(circle1.getFerence(), 1000.0);
+    circle1.setFer(1000.0);
+    EXPECT_DOUBLE_EQ(circle1.getFer(), 1000.0);
 }
 
 TEST(Marina_Saratova_Test_Circle, test_setter_area) {
@@ -47,44 +47,44 @@ TEST(Marina_Saratova_Test_Circle, test_setter_area) {
 TEST(Marina_Saratova_Test_Circle, test_ference_changed_after_area) {
     Circle circle1;
     circle1.setArea(1000.0);
-    EXPECT_DOUBLE_EQ(circle1.getFerence(), 112.09977698461313);
+    EXPECT_DOUBLE_EQ(circle1.getFer(), 112.09977698461313);
 }
 
 TEST(Marina_Saratova_Test_Circle, test_ference_changed_after_radius) {
     Circle circle1;
-    circle1.setRadius(1000.0);
-    EXPECT_DOUBLE_EQ(circle1.getFerence(), 6283.18);
+    circle1.setRad(1000.0);
+    EXPECT_DOUBLE_EQ(circle1.getFer(), 6283.18);
 }
 
 TEST(Marina_Saratova_Test_Circle, test_area_changed_after_radius) {
     Circle circle1;
-    circle1.setRadius(1000.0);
+    circle1.setRad(1000.0);
     EXPECT_DOUBLE_EQ(circle1.getArea(), 3141589.9999999995);
 }
 
 TEST(Marina_Saratova_Test_Circle, test_radius_changed_after_ference) {
     Circle circle1;
-    circle1.setFerence(1000.0);
-    EXPECT_DOUBLE_EQ(circle1.getRadius(), 159.15507752443827);
+    circle1.setFer(1000.0);
+    EXPECT_DOUBLE_EQ(circle1.getRad(), 159.15507752443827);
 }
 
 TEST(Marina_Saratova_Test_Circle, test_radius_changed_after_area) {
     Circle circle1;
     circle1.setArea(1000.0);
-    EXPECT_DOUBLE_EQ(circle1.getRadius(), 17.841248696458344);
+    EXPECT_DOUBLE_EQ(circle1.getRad(), 17.841248696458344);
 }
 
 TEST(Marina_Saratova_Test_Circle, test_area_changed_after_ference) {
     Circle circle1;
-    circle1.setFerence(1000.0);
+    circle1.setFer(1000.0);
     EXPECT_DOUBLE_EQ(circle1.getArea(), 79577.538762219134);
 }
 
 TEST(Marina_Saratova_Test_Circle, test_set_negative_radius) {
     Circle circle1;
-    ASSERT_ANY_THROW(circle1.setRadius(-1000.0));
-    ASSERT_ANY_THROW(circle1.setRadius(-2000.0));
-    ASSERT_ANY_THROW(circle1.setRadius(-3000.0));
+    ASSERT_ANY_THROW(circle1.setRad(-1000.0));
+    ASSERT_ANY_THROW(circle1.setRad(-2000.0));
+    ASSERT_ANY_THROW(circle1.setRad(-3000.0));
 }
 
 TEST(Marina_Saratova_Test_Circle, test_create_circle_with_negative_radius) {
@@ -108,9 +108,9 @@ TEST(Marina_Saratova_Test_Circle, test_set_negative_area) {
 
 TEST(Marina_Saratova_Test_Circle, test_set_negative_ference) {
     Circle circle1;
-    ASSERT_ANY_THROW(circle1.setFerence(-1000.0));
-    ASSERT_ANY_THROW(circle1.setFerence(-2000.0));
-    ASSERT_ANY_THROW(circle1.setFerence(-3000.0));
+    ASSERT_ANY_THROW(circle1.setFer(-1000.0));
+    ASSERT_ANY_THROW(circle1.setFer(-2000.0));
+    ASSERT_ANY_THROW(circle1.setFer(-3000.0));
 }
 
 TEST(Marina_Saratova_Test_Circle, first_task) {
