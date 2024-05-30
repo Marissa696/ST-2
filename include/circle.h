@@ -5,12 +5,12 @@
 
 class Circle {
  private:
-    static const double PI;
     static void ValidateNotNegative(double val);
     double radius;
     double ference;
     double area;
  public:
+    static const double PI;
     explicit Circle(double radius = 0);
     void setRadius(double radius);
     void setFerence(double ference);
