@@ -34,7 +34,8 @@ TEST(Marina_Saratova_Test_Circle, setFerence_positive_test) {
     c.setFerence(31.4);
     ASSERT_DOUBLE_EQ(31.4 / (2 * Circle::PI), c.getRadius());
     ASSERT_DOUBLE_EQ(31.4, c.getFerence());
-    ASSERT_DOUBLE_EQ((31.4 / (2 * Circle::PI)) * (31.4 / (2 * Circle::PI)) * Circle::PI, c.getArea());
+    ASSERT_DOUBLE_EQ((31.4 / (2 * Circle::PI)) *
+     (31.4 / (2 * Circle::PI)) * Circle::PI, c.getArea());
 }
 
 TEST(Marina_Saratova_Test_Circle, setArea_positive_test) {
@@ -100,7 +101,8 @@ TEST(Marina_Saratova_Test_Circle, update_ference_test) {
     c.setFerence(37.7);
     ASSERT_DOUBLE_EQ(37.7 / (2 * Circle::PI), c.getRadius());
     ASSERT_DOUBLE_EQ(37.7, c.getFerence());
-    ASSERT_DOUBLE_EQ((37.7 / (2 * Circle::PI)) * (37.7 / (2 * Circle::PI)) * Circle::PI, c.getArea());
+    ASSERT_DOUBLE_EQ((37.7 / (2 * Circle::PI)) * (37.7 /
+     (2 * Circle::PI)) * Circle::PI, c.getArea());
 }
 
 TEST(Marina_Saratova_Test_Circle, update_area_test) {
@@ -123,15 +125,17 @@ TEST(Marina_Saratova_Test_SwimmingPoolSolve, positive_test) {
     double areaWidth = 3.0;
     double areaPricePerSquareMeter = 50.0;
     double fencePricePerMeter = 10.0;
-    
-    double result = SwimmingPoolSolve(poolRadius, areaWidth, areaPricePerSquareMeter, fencePricePerMeter);
-    
+
+    double result = SwimmingPoolSolve(poolRadius, areaWidth,
+     areaPricePerSquareMeter, fencePricePerMeter);
+
     Circle pool(poolRadius);
     Circle poolAndArea(poolRadius + areaWidth);
-    
+
     double expectedFerencePrice = poolAndArea.getFerence() * fencePricePerMeter;
-    double expectedAreaPrice = (poolAndArea.getArea() - pool.getArea()) * areaPricePerSquareMeter;
+    double expectedAreaPrice = (poolAndArea.getArea() - pool.getArea()) *
+     areaPricePerSquareMeter;
     double expectedTotalPrice = expectedFerencePrice + expectedAreaPrice;
-    
+
     ASSERT_NEAR(result, expectedTotalPrice, 1e-6);
 }

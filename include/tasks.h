@@ -5,4 +5,3 @@ double SwimmingPoolSolve(double poolRadiusMetre,
     double areaWidthMeter,
     double areaPricePerSquareMeter,
     double fencePricePerMeter);
-    
