@@ -7,137 +7,131 @@
 
 const double PI = 4 * std::atan(1.0);
 
-TEST(Marina_Saratova_Test_Circle, ference_set_test) {
-    Circle c(10);
-    ASSERT_DOUBLE_EQ(10 * 2 * PI, c.getFerence());
-}
-
-TEST(Marina_Saratova_Test_Circle, area_set_test) {
-    Circle c(10);
-    ASSERT_DOUBLE_EQ(10 * 10 * PI, c.getArea());
-}
-
-TEST(Marina_Saratova_Test_Circle, construcor_test) {
-    Circle c(10);
-    ASSERT_DOUBLE_EQ(10, c.getRadius());
-}
-
-TEST(Marina_Saratova_Test_Circle, ference_setter) {
-    double ference = 30.42;
+TEST(Marina_Saratova_Test_Circle, constructor_default_test) {
     Circle c;
-    c.setFerence(ference);
-    ASSERT_DOUBLE_EQ(ference, c.getFerence());
+    ASSERT_DOUBLE_EQ(0, c.getRadius());
+    ASSERT_DOUBLE_EQ(0, c.getFerence());
+    ASSERT_DOUBLE_EQ(0, c.getArea());
 }
 
-TEST(Marina_Saratova_Test_Circle, area_setter) {
-    double area = 40.23;
+TEST(Marina_Saratova_Test_Circle, constructor_positive_test) {
+    Circle c(5);
+    ASSERT_DOUBLE_EQ(5, c.getRadius());
+    ASSERT_DOUBLE_EQ(5 * 2 * Circle::PI, c.getFerence());
+    ASSERT_DOUBLE_EQ(5 * 5 * Circle::PI, c.getArea());
+}
+
+TEST(Marina_Saratova_Test_Circle, setRadius_positive_test) {
     Circle c;
-    c.setArea(area);
-    ASSERT_DOUBLE_EQ(area, c.getArea());
+    c.setRadius(7);
+    ASSERT_DOUBLE_EQ(7, c.getRadius());
+    ASSERT_DOUBLE_EQ(7 * 2 * Circle::PI, c.getFerence());
+    ASSERT_DOUBLE_EQ(7 * 7 * Circle::PI, c.getArea());
 }
 
-TEST(Marina_Saratova_Test_Circle, radius_setter) {
-    double radius = 20;
+TEST(Marina_Saratova_Test_Circle, setFerence_positive_test) {
     Circle c;
-    c.setRadius(radius);
-    ASSERT_DOUBLE_EQ(radius, c.getRadius());
+    c.setFerence(31.4);
+    ASSERT_DOUBLE_EQ(31.4 / (2 * Circle::PI), c.getRadius());
+    ASSERT_DOUBLE_EQ(31.4, c.getFerence());
+    ASSERT_DOUBLE_EQ((31.4 / (2 * Circle::PI)) * (31.4 / (2 * Circle::PI)) * Circle::PI, c.getArea());
 }
 
-TEST(Marina_Saratova_Test_Circle, test_rad_after_area) {
-    double area = 40.23;
+TEST(Marina_Saratova_Test_Circle, setArea_positive_test) {
     Circle c;
-    c.setArea(area);
-    ASSERT_DOUBLE_EQ(sqrt(area / PI), c.getRadius());
+    c.setArea(78.5);
+    ASSERT_DOUBLE_EQ(sqrt(78.5 / Circle::PI), c.getRadius());
+    ASSERT_DOUBLE_EQ(2 * Circle::PI * sqrt(78.5 / Circle::PI), c.getFerence());
+    ASSERT_DOUBLE_EQ(78.5, c.getArea());
 }
 
-TEST(Marina_Saratova_Test_Circle, test_ference_after_rad) {
-    double radius = 20;
+TEST(Marina_Saratova_Test_Circle, radius_not_negative_test) {
+    ASSERT_THROW(Circle(-1), std::logic_error);
+}
+
+TEST(Marina_Saratova_Test_Circle, setRadius_not_negative_test) {
     Circle c;
-    c.setRadius(radius);
-    ASSERT_DOUBLE_EQ(radius * 2 * PI, c.getFerence());
+    ASSERT_THROW(c.setRadius(-1), std::logic_error);
 }
 
-TEST(Marina_Saratova_Test_Circle, test_area_after_rad) {
-    double radius = 20;
+TEST(Marina_Saratova_Test_Circle, setFerence_not_negative_test) {
     Circle c;
-    c.setRadius(radius);
-    ASSERT_DOUBLE_EQ(radius * radius * PI, c.getArea());
+    ASSERT_THROW(c.setFerence(-1), std::logic_error);
 }
 
-TEST(Marina_Saratova_Test_Circle, test_area_after_fer) {
-    double ference = 30.42;
+TEST(Marina_Saratova_Test_Circle, setArea_not_negative_test) {
     Circle c;
-    c.setFerence(ference);
-    ASSERT_DOUBLE_EQ(pow(ference / 2 / PI, 2) * PI, c.getArea());
+    ASSERT_THROW(c.setArea(-1), std::logic_error);
 }
 
-TEST(Marina_Saratova_Test_Circle, test_rad_after_fer) {
-    double ference = 30.42;
+TEST(Marina_Saratova_Test_Circle, zero_radius_test) {
+    Circle c(0);
+    ASSERT_DOUBLE_EQ(0, c.getRadius());
+    ASSERT_DOUBLE_EQ(0, c.getFerence());
+    ASSERT_DOUBLE_EQ(0, c.getArea());
+}
+
+TEST(Marina_Saratova_Test_Circle, zero_ference_test) {
     Circle c;
-    c.setFerence(ference);
-    ASSERT_DOUBLE_EQ(ference / 2 / PI, c.getRadius());
+    c.setFerence(0);
+    ASSERT_DOUBLE_EQ(0, c.getRadius());
+    ASSERT_DOUBLE_EQ(0, c.getFerence());
+    ASSERT_DOUBLE_EQ(0, c.getArea());
 }
 
-TEST(Marina_Saratova_Test_Circle, test_fer_after_area) {
-    double area = 40.23;
+TEST(Marina_Saratova_Test_Circle, zero_area_test) {
     Circle c;
-    c.setArea(area);
-    ASSERT_DOUBLE_EQ(sqrt(area / PI) * 2 * PI, c.getFerence());
+    c.setArea(0);
+    ASSERT_DOUBLE_EQ(0, c.getRadius());
+    ASSERT_DOUBLE_EQ(0, c.getFerence());
+    ASSERT_DOUBLE_EQ(0, c.getArea());
 }
 
-TEST(Marina_Saratova_Test_Circle, set_negative_rad) {
-    Circle c;
-    ASSERT_ANY_THROW(c.setRadius(-10));
+TEST(Marina_Saratova_Test_Circle, update_radius_test) {
+    Circle c(2);
+    c.setRadius(3);
+    ASSERT_DOUBLE_EQ(3, c.getRadius());
+    ASSERT_DOUBLE_EQ(3 * 2 * Circle::PI, c.getFerence());
+    ASSERT_DOUBLE_EQ(3 * 3 * Circle::PI, c.getArea());
 }
 
-TEST(Marina_Saratova_Test_Circle, set_negative_fer) {
-    Circle c;
-    ASSERT_ANY_THROW(c.setFerence(-10.2));
+TEST(Marina_Saratova_Test_Circle, update_ference_test) {
+    Circle c(2);
+    c.setFerence(37.7);
+    ASSERT_DOUBLE_EQ(37.7 / (2 * Circle::PI), c.getRadius());
+    ASSERT_DOUBLE_EQ(37.7, c.getFerence());
+    ASSERT_DOUBLE_EQ((37.7 / (2 * Circle::PI)) * (37.7 / (2 * Circle::PI)) * Circle::PI, c.getArea());
 }
 
-TEST(Marina_Saratova_Test_Circle, set_negative_area) {
-    Circle c;
-    ASSERT_ANY_THROW(c.setArea(-203.21));
+TEST(Marina_Saratova_Test_Circle, update_area_test) {
+    Circle c(2);
+    c.setArea(50.24);
+    ASSERT_DOUBLE_EQ(sqrt(50.24 / Circle::PI), c.getRadius());
+    ASSERT_DOUBLE_EQ(2 * Circle::PI * sqrt(50.24 / Circle::PI), c.getFerence());
+    ASSERT_DOUBLE_EQ(50.24, c.getArea());
 }
 
-TEST(Marina_Saratova_Test_Circle, check_ferecnde_with_equal_rad) {
-    double radius = 20.34;
-    Circle c1(radius), c2(radius);
-    ASSERT_DOUBLE_EQ(c1.getFerence(), c2.getFerence());
+TEST(Marina_Saratova_Test_EarthAndRopeSolve, positive_test) {
+    double earthRadius = 6371.0;
+    double growth = 10.0;
+    double result = EarthAndRopeSolve(earthRadius, growth);
+    ASSERT_NEAR(result, growth / (2 * Circle::PI), 1e-6);
 }
 
-TEST(Marina_Saratova_Test_Circle, create_negative_radius) {
-    ASSERT_ANY_THROW(Circle(-23.2));
-}
-
-TEST(Marina_Saratova_Test_Circle, check_area_with_equal_rad) {
-    double radius = 10.2;
-    Circle c1(radius), c2(radius);
-    ASSERT_DOUBLE_EQ(c1.getArea(), c2.getArea());
-}
-
-TEST(Marina_Saratova_Test_Circle, first_task) {
-    double earthRadiusMeters = 6378.1 * 1e3;
-    double startRopeMeters = earthRadiusMeters * 2 * PI;
-    double actualResultMeters = (startRopeMeters + 1)
-        / 2 / PI - earthRadiusMeters;
-
-    ASSERT_DOUBLE_EQ(EarthAndRopeSolve(earthRadiusMeters, 1)
-        , actualResultMeters);
-}
-
-TEST(Marina_Saratova_Test_Circle, second_task) {
-    double poolRadius = 3;
-    double areaWidth = 1;
-
-    double meterFencePrice = 2000;
-    double squareMeterAreaPrice = 1000;
-
-    double fencePrice = 2 * PI * (poolRadius + areaWidth) * meterFencePrice;
-    double areaPrice = PI * areaWidth * (areaWidth + 2 * poolRadius)
-        * squareMeterAreaPrice;
-
-    ASSERT_DOUBLE_EQ(
-        SwimmingPoolSolve(poolRadius, areaWidth, squareMeterAreaPrice,
-            meterFencePrice), fencePrice + areaPrice);
+TEST(Marina_Saratova_Test_SwimmingPoolSolve, positive_test) {
+    double poolRadius = 5.0;
+    double areaWidth = 3.0;
+    double areaPricePerSquareMeter = 50.0;
+    double fencePricePerMeter = 10.0;
+    
+    double result = SwimmingPoolSolve(poolRadius, areaWidth, areaPricePerSquareMeter, fencePricePerMeter);
+    
+    Circle pool(poolRadius);
+    Circle poolAndArea(poolRadius + areaWidth);
+    
+    double expectedFerencePrice = poolAndArea.getFerence() * fencePricePerMeter;
+    double expectedAreaPrice = (poolAndArea.getArea() - pool.getArea()) * areaPricePerSquareMeter;
+    double expectedTotalPrice = expectedFerencePrice + expectedAreaPrice;
+    
+    ASSERT_NEAR(result, expectedTotalPrice, 1e-6);
 }
